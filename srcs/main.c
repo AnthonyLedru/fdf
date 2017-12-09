@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 16:09:02 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/09 15:31:13 by aledru           ###   ########.fr       */
+/*   Created: 2017/12/09 15:07:19 by aledru            #+#    #+#             */
+/*   Updated: 2017/12/09 17:15:34 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
+#include "../includes/fdf.h"
 
-int		get_next_line(int fd, char **line);
-
-#endif
+int main(int ac, char **av)
+{
+	if (ac != 2)
+		return (1);
+	is_file_valid(av[1]);
+	return 0;
+}
