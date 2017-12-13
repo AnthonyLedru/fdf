@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#    Updated: 2017/12/09 20:10:29 by aledru           ###   ########.fr        #
+#    Updated: 2017/12/13 15:16:18 by aledru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ CFLAGS := -Wall -Wextra -Werror
 SOURCES := \
 		main.c \
 		reader.c \
+		line.c \
 
 OBJECTS := $(SOURCES:.c=.o)
 
