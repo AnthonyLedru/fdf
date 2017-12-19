@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/09 15:07:19 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/15 18:03:47 by aledru           ###   ########.fr       */
+/*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
+/*   Updated: 2017/12/16 16:18:02 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int ac, char **av)
+t_img	*create_img(void *img)
 {
-	int		fd;
-	t_fdf	*fdf;
+	t_img *s_img;
 
-	if (ac != 2)
-		return (1);
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error ");
-		exit(EXIT_FAILURE);
-	}
-	fdf = check_valid_file(fd);
-	fdf->spaces = get_spaces(fdf);
-	create_window(fdf, av[1]);
-	return (0);
+	s_img = (t_img*)ft_memalloc(sizeof(t_img));
+	s_img->img_ptr = img;
+	s_img->bpp = 0;
+	s_img->size_line = 0;
+	s_img->endian = 0;
+	s_img->data = NULL;
+	return (s_img);
 }

@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/09 15:07:19 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/15 18:03:47 by aledru           ###   ########.fr       */
+/*   Created: 2017/12/15 18:19:25 by aledru            #+#    #+#             */
+/*   Updated: 2017/12/15 18:34:47 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int ac, char **av)
+t_point			*create_point(int x, int y)
 {
-	int		fd;
-	t_fdf	*fdf;
+	t_point	*point;
 
-	if (ac != 2)
-		return (1);
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error ");
-		exit(EXIT_FAILURE);
-	}
-	fdf = check_valid_file(fd);
-	fdf->spaces = get_spaces(fdf);
-	create_window(fdf, av[1]);
-	return (0);
+	point = (t_point*)ft_memalloc(sizeof(t_point));
+	point->x = x;
+	point->y = y;
+	return (point);
+}
+
+void			set_point(t_point **point, int x, int y)
+{
+	(*point)->x = x;
+	(*point)->y = y;
 }

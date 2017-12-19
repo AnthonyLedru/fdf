@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/09 15:07:19 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/15 18:03:47 by aledru           ###   ########.fr       */
+/*   Created: 2017/12/15 13:18:49 by aledru            #+#    #+#             */
+/*   Updated: 2017/12/19 10:44:59 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int ac, char **av)
+int		mlx_escape(int keycode, void *param)
 {
-	int		fd;
-	t_fdf	*fdf;
+	(void)param;
+	if (keycode == 53)
+		exit(EXIT_SUCCESS);
+	return (0);
+}
 
-	if (ac != 2)
-		return (1);
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
+int		mlx_zoom(int keycode, void *param)
+{
+	(void)param;
+	if (keycode == 4)
 	{
-		perror("Error ");
-		exit(EXIT_FAILURE);
+
 	}
-	fdf = check_valid_file(fd);
-	fdf->spaces = get_spaces(fdf);
-	create_window(fdf, av[1]);
+	//zoom bas
+	if (keycode == 5)
+	{
+
+	}
 	return (0);
 }

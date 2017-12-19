@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#    Updated: 2017/12/13 15:16:18 by aledru           ###   ########.fr        #
+#    Updated: 2017/12/16 13:43:05 by aledru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,20 @@ OBJECTS_FOLDER  := objs/
 
 vpath %.c srcs
 
-CFLAGS := -Wall -Wextra -Werror
-
+FLAGS := -Wall -Wextra -Werror
+MLX	   := -lmlx -framework OpenGL -framework AppKit
 SOURCES := \
-		main.c \
-		reader.c \
 		line.c \
+		segment.c \
+		fdf.c \
+		point.c \
+		img.c \
+		main.c \
+		parser.c \
+		mlx.c \
+		event.c \
+		draw.c \
+
 
 OBJECTS := $(SOURCES:.c=.o)
 
@@ -45,7 +53,7 @@ header:
 $(NAME): $(OBJECTS)
 	@make -C libft/
 	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
-	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a
+	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
 
 objs/%.o: %.c

@@ -6,11 +6,11 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 14:46:57 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/13 16:43:52 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/15 18:20:37 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 t_line			*create_line(t_line_points **points, int num, int size)
 {
