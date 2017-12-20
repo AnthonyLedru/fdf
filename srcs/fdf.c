@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:17:49 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/16 17:20:15 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/20 18:39:40 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,35 @@ t_fdf		*create_fdf(t_line *line)
 	fdf->line = line;
 	fdf->spaces = create_point(0, 0);
 	return (fdf);
+}
+
+int			get_number_of_line(t_fdf *fdf)
+{
+	int		i;
+	t_line	*line;
+
+	i = 0;
+	line = fdf->line;
+	while (line->next)
+	{
+		line = line->next;
+		i++;
+	}
+	return (i);
+}
+
+int			get_max_line_size(t_fdf *fdf)
+{
+	int		max_line_size;
+	t_line	*line;
+
+	line = fdf->line;
+	max_line_size = 0;
+	while (line)
+	{
+		if (line->size > max_line_size)
+			max_line_size = line->size;
+		line = line->next;
+	}
+	return (max_line_size);
 }

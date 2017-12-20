@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/16 17:28:45 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/20 18:41:13 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@
 ** -------------------------------- Struct -------------------------------------
 */
 
-typedef	struct	s_line_points
+typedef	struct	s_line_values
 {
 	int	height;
 	int	color;
-}				t_line_points;
+}				t_line_values;
 
 typedef struct	s_line
 {
-	struct s_line_points	**points;
+	struct s_line_values	**values;
+	struct s_point			**points;
 	int						size;
 	int						num;
 	struct s_line			*next;
@@ -50,12 +51,11 @@ typedef struct	s_img
 
 typedef struct	s_fdf
 {
-	void			*mlx;
-	void			*win;
-	struct s_img	*img;
-	struct s_point	*spaces;
-	struct s_line	*line;
-
+	void					*mlx;
+	void					*win;
+	struct s_img			*img;
+	struct s_point			*spaces;
+	struct s_line			*line;
 }				t_fdf;
 
 typedef struct	s_point
@@ -80,14 +80,15 @@ t_fdf			*check_valid_file(int fd);
 ** --------------------------------- Line --------------------------------------
 */
 
-t_line			*create_line(t_line_points **points, int num, int size);
-t_line_points	*create_line_points(int height, int color);
+t_line			*create_line(t_line_values **values, int num, int size);
+t_line_values	*create_line_values(int height, int color);
 
 /*
 ** -------------------------------- Point --------------------------------------
 */
 t_point			*create_point(int x, int y);
 void			set_point(t_point **point, int x, int y);
+void			set_points_setup(t_fdf *fdf);
 
 /*
 ** -------------------------------- Segment ------------------------------------
@@ -113,12 +114,14 @@ int				mlx_zoom(int keycode, void *param);
 
 t_point			*get_spaces(t_fdf *fdf);
 t_fdf			*create_fdf(t_line *line);
+int				get_number_of_line(t_fdf *fdf);
+int				get_max_line_size(t_fdf *fdf);
 
 /*
 ** ---------------------------------- Draw -------------------------------------
 */
 
-void			draw_setup(t_fdf *fdf);
+void			draw_points(t_fdf *fdf);
 
 /*
 ** ----------------------------------- Img -------------------------------------

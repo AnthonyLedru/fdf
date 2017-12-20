@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 19:44:30 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/16 14:22:33 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/20 16:16:27 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,27 @@ static	int		get_point_color(char *point)
 static t_line	*line_to_struct(char *line)
 {
 	static int		num;
-	char			**all_points;
-	t_line_points	**points;
+	char			**all_values;
+	t_line_values	**values;
 	int				size;
 
-	all_points = ft_strsplit(line, ' ');
+	all_values = ft_strsplit(line, ' ');
 	size = 0;
-	while (all_points[size])
+	while (all_values[size])
 		size++;
-	points = (t_line_points**)ft_memalloc(sizeof(t_line_points*) * size);
+	values = (t_line_values**)ft_memalloc(sizeof(t_line_values*) * size);
 	while (size - 1 >= 0)
 	{
-		points[size - 1] = create_line_points(ft_atoi(all_points[size - 1]),
-		get_point_color(all_points[size - 1]));
-		free(all_points[size - 1]);
+		values[size - 1] = create_line_values(ft_atoi(all_values[size - 1]),
+		get_point_color(all_values[size - 1]));
+		free(all_values[size - 1]);
 		size--;
 	}
-	while (all_points[size])
+	while (all_values[size])
 		size++;
 	num++;
-	free(all_points);
-	return (create_line(points, num, size));
+	free(all_values);
+	return (create_line(values, num, size));
 }
 
 t_fdf			*check_valid_file(int fd)

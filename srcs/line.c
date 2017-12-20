@@ -6,30 +6,31 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 14:46:57 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/15 18:20:37 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/20 18:36:17 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_line			*create_line(t_line_points **points, int num, int size)
+t_line			*create_line(t_line_values **points, int num, int size)
 {
 	t_line *line;
 
 	line = (t_line*)ft_memalloc(sizeof(t_line));
-	line->points = points;
+	line->values = points;
+	line->points = NULL;
 	line->num = num;
 	line->size = size;
 	line->next = NULL;
 	return (line);
 }
 
-t_line_points	*create_line_points(int height, int color)
+t_line_values	*create_line_values(int height, int color)
 {
-	t_line_points *line_points;
+	t_line_values *line_values;
 
-	line_points = (t_line_points*)ft_memalloc(sizeof(t_line_points));
-	line_points->height = height;
-	line_points->color = color;
-	return (line_points);
+	line_values = (t_line_values*)ft_memalloc(sizeof(t_line_values));
+	line_values->height = height;
+	line_values->color = color;
+	return (line_values);
 }

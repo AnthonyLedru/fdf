@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 13:18:49 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/19 10:44:59 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/20 18:38:21 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,9 @@ int		mlx_zoom(int keycode, void *param)
 	(void)param;
 	if (keycode == 4)
 	{
-
 	}
-	//zoom bas
 	if (keycode == 5)
 	{
-
 	}
 	return (0);
 }
