@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/20 18:41:13 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/21 14:53:38 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void			create_window(t_fdf *fdf, char *file_name);
 */
 
 int				mlx_escape(int keycode, void *param);
-int				mlx_zoom(int keycode, void *param);
+int				mlx_zoom(int button, int x, int y, void *param);
 
 /*
 ** ---------------------------------- FDF --------------------------------------

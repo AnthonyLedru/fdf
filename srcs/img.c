@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/20 16:06:27 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/21 16:09:46 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_img	*create_img(void *img)
 	s_img->bpp = 0;
 	s_img->size_line = 0;
 	s_img->endian = 0;
-	s_img->data = NULL;
+	s_img->data = (int *)mlx_get_data_addr(s_img->img_ptr, &s_img->bpp,
+			&s_img->size_line, &s_img->endian);
 	return (s_img);
 }

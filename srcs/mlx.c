@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:26:08 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/20 18:41:22 by aledru           ###   ########.fr       */
+/*   Updated: 2017/12/21 14:24:13 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ void	create_window(t_fdf *fdf, char *file_name)
 	fdf->mlx = mlx;
 	fdf->win = win;
 	fdf->img = create_img(mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT));
-	fdf->img->data = (int *)mlx_get_data_addr(fdf->img->img_ptr, &fdf->img->bpp,
-						&fdf->img->size_line, &fdf->img->endian);
 	mlx_key_hook(win, mlx_escape, fdf);
+	mlx_mouse_hook(win, mlx_zoom, fdf);
 	set_points_setup(fdf);
 	draw_points(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img_ptr, 0, 0);
-	mlx_mouse_hook(win, mlx_zoom, fdf);
 	mlx_loop(mlx);
 }
