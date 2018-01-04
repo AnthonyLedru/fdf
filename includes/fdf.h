@@ -6,20 +6,21 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/21 14:53:38 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/04 15:25:50 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# include <math.h>
 # include <fcntl.h>
 # include <string.h>
 # include <stdio.h>
 # include <mlx.h>
 # include "../libft/includes/libft.h"
-# define WIN_HEIGHT 1300
-# define WIN_WIDTH 2350
+# define WIN_HEIGHT		1300
+# define WIN_WIDTH		2350
 
 /*
 ** -------------------------------- Struct -------------------------------------
@@ -69,6 +70,24 @@ typedef	struct	s_segment
 	struct s_point	*d;
 	struct s_point	*s;
 }				t_segment;
+
+typedef struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	decimal;
+}				t_color;
+
+typedef	struct	s_gradient
+{
+	struct s_color	*begin;
+	struct s_color	*end;
+	struct s_color	*color;
+	int				nb_pixel;
+	float			step;
+	float			mix;
+}				t_gradient;
 
 /*
 ** -------------------------------- Reader -------------------------------------
@@ -128,4 +147,17 @@ void			draw_points(t_fdf *fdf);
 */
 
 t_img			*create_img(void *img);
+
+/*
+** ------------------------------ Color Gradient -------------------------------
+*/
+
+t_gradient		*create_gradient(t_color *begin, t_color *end, int nb_pixel);
+
+/*
+** ---------------------------------- Color ------------------------------------
+*/
+
+t_color			*create_color(int decimal);
+int				rgb_to_decimal(t_color *color);
 #endif

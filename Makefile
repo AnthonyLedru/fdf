@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#    Updated: 2017/12/16 13:43:05 by aledru           ###   ########.fr        #
+#    Updated: 2018/01/04 14:49:37 by aledru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SOURCES := \
 		mlx.c \
 		event.c \
 		draw.c \
+		gradient.c \
+		color.c \
 
 
 OBJECTS := $(SOURCES:.c=.o)
