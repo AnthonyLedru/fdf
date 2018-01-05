@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:12:13 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/04 18:53:11 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/05 16:58:48 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static int		get_color_gradient(t_gradient *gradient)
 		return (gradient->begin->decimal);
 	if (gradient->step >= 1)
 		return (gradient->end->decimal);
-	gradient->color->r = gradient->begin->r * (1.0 - gradient->step)
-							+ gradient->end->r * (gradient->step);
-	gradient->color->g =  gradient->begin->g * (1.0 - gradient->step)
-							+ gradient->end->g * (gradient->step);
-	gradient->color->b = gradient->begin->b * (1.0 - gradient->step)
-							+ gradient->end->b * (gradient->step);
+	gradient->color->r = gradient->begin->r + (gradient->end->r -
+			gradient->begin->r) * gradient->step;
+	gradient->color->g = gradient->begin->g + (gradient->end->g -
+			gradient->begin->g) * gradient->step;
+	gradient->color->b = gradient->begin->b + (gradient->end->b -
+			gradient->begin->b) * gradient->step;
 	gradient->color->decimal = rgb_to_decimal(gradient->color);
 	gradient->step += gradient->mix;
 	return (gradient->color->decimal);
@@ -31,7 +31,7 @@ static int		get_color_gradient(t_gradient *gradient)
 
 static int		get_nb_pixel(t_point *a, t_point *b)
 {
-	int nb_pixel;
+	int			nb_pixel;
 	int			err;
 	int			err_cpy;
 	t_segment	*seg;
@@ -58,7 +58,8 @@ static int		get_nb_pixel(t_point *a, t_point *b)
 	return (nb_pixel);
 }
 
-static void	draw_segment(t_point *a, t_point *b, t_fdf *fdf, t_gradient *gradient)
+static void		draw_segment(t_point *a, t_point *b, t_fdf *fdf,
+		t_gradient *gradient)
 {
 	int			err;
 	int			err_cpy;
@@ -87,50 +88,54 @@ static void	draw_segment(t_point *a, t_point *b, t_fdf *fdf, t_gradient *gradien
 	}
 }
 
-static t_color		*get_color(int n)
+static t_color	*get_color(t_fdf *fdf, int n)
 {
-	if (n == 0)
-	{
-		return (create_color(0x0000FF));
-	}
-	if (n > 0)
-		return (create_color(0xFF0000));
-	return (create_color(0x000000));
+	t_palette *palette;
+
+	palette = fdf->palette;
+	if (n <= 0)
+		if (palette->c1)
+			return (palette->c1);
+	if (n >= 10 && n < 100)
+		if (palette->c2)
+			return (palette->c2);
+	if (n >= 100 && n < 200)
+		if (palette->c3)
+			return (palette->c3);
+	if (n >= 200 && n < 300)
+		if (palette->c4)
+			return (palette->c4);
+	if (n >= 300)
+		if (palette->c5)
+			return (palette->c5);
+	return (create_color(0xFFFFFF));
 }
 
-void		draw_points(t_fdf *fdf)
+void			draw_points(t_fdf *fdf)
 {
-	t_line	*line;
-	int		i;
-	t_gradient	*gradient;
-	t_point		*cp1;
-	t_point		*cp2;
+	t_line		*l;
+	int			i;
 
-	line = fdf->line;
-	while (line->next)
+	l = fdf->line;
+	while (l->next)
 	{
 		i = 0;
-		while (i < line->size - 1)
+		while (i < l->size - 1)
 		{
-			cp1 = create_point(line->points[i]->x, line->points[i]->y);
-			cp2 = create_point(line->points[i + 1]->x, line->points[i + 1]->y);
-			gradient = create_gradient(get_color(line->values[i]->height),
-						get_color(line->values[i + 1]->height),
-						get_nb_pixel(cp1, cp2));
-			draw_segment(line->points[i], line->points[i + 1], fdf, gradient);
-			if (line->next)
-			{
-				cp1 = create_point(line->points[i]->x, line->points[i]->y);
-				cp2 = create_point(line->next->points[i + 1]->x,
-									line->next->points[i + 1]->y);
-				gradient = create_gradient(get_color(line->values[i + 1]->height),
-						get_color(line->next->values[i + 1]->height),
-						get_nb_pixel(cp1, cp2));
-				draw_segment(line->points[i], line->next->points[i + 1], fdf,
-						gradient);
-			}
+			draw_segment(l->points[i], l->points[i + 1], fdf,
+				create_gradient(get_color(fdf, l->values[i]->height),
+				get_color(fdf, l->values[i + 1]->height),
+				get_nb_pixel(create_point(l->points[i]->x, l->points[i]->y),
+				create_point(l->points[i + 1]->x, l->points[i + 1]->y))));
+			if (l->next)
+				draw_segment(l->points[i], l->next->points[i + 1], fdf,
+					create_gradient(get_color(fdf, l->values[i + 1]->height),
+					get_color(fdf, l->next->values[i + 1]->height),
+					get_nb_pixel(create_point(l->points[i]->x, l->points[i]->y),
+					create_point(l->next->points[i + 1]->x,
+					l->next->points[i + 1]->y))));
 			i++;
 		}
-		line = line->next;
+		l = l->next;
 	}
 }

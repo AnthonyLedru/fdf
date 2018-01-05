@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:07:19 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/21 13:53:55 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/05 16:58:45 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		main(int ac, char **av)
 {
-	int		fd;
-	t_fdf	*fdf;
+	int			fd;
+	t_fdf		*fdf;
 
-	if (ac != 2)
+	if (ac < 2 || ac > 7)
 		return (1);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
@@ -26,6 +26,7 @@ int		main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	fdf = check_valid_file(fd);
+	fdf->palette = create_palette(ac, av);
 	create_window(fdf, av[1]);
 	return (0);
 }

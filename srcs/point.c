@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 18:19:25 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/21 13:43:16 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/05 18:49:37 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			set_point(t_point **point, int x, int y)
 	(*point)->y = y;
 }
 
-void			set_points(t_fdf *fdf, t_point *pos, t_point *pos_cpy)
+static void		set_points(t_fdf *fdf, t_point *pos, t_point *pos_cpy)
 {
 	t_point			**points;
 	int				i;
@@ -64,4 +64,30 @@ void			set_points_setup(t_fdf *fdf)
 	pos = create_point(0, get_max_line_size(fdf) * fdf->spaces->y);
 	pos_cpy = create_point(pos->x, pos->y);
 	set_points(fdf, pos, pos_cpy);
+}
+
+void			translate_points(t_fdf *fdf, int x_inc, int y_inc)
+{
+	int	i;
+	t_line	*line;
+
+	line = fdf->line;
+	while (line->next)
+	{
+		i = 0;
+		while (i < line->size - 1)
+		{
+			line->points[i]->x = line->points[i]->x + x_inc;
+			line->points[i]->y += line->points[i]->y + y_inc;
+			i++;
+		}
+		line = line->next;
+	}
+	printf("%d\n", x_inc);
+	printf("%d\n", y_inc);
+	mlx_destroy_image(fdf->mlx, fdf->img->img_ptr);
+	fdf->img = create_img(mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT));
+	set_points_setup(fdf);
+	draw_points(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img_ptr, 0, 0);
 }

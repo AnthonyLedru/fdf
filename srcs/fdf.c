@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:17:49 by aledru            #+#    #+#             */
-/*   Updated: 2017/12/21 13:49:45 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/05 16:06:56 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_fdf		*create_fdf(t_line *line)
 	fdf->img = NULL;
 	fdf->line = line;
 	fdf->spaces = get_spaces(fdf);
+	fdf->palette = NULL;
 	return (fdf);
 }

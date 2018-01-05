@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/04 15:25:50 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/05 17:43:14 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct	s_fdf
 	struct s_img			*img;
 	struct s_point			*spaces;
 	struct s_line			*line;
+	struct s_palette		*palette;
 }				t_fdf;
 
 typedef struct	s_point
@@ -89,8 +90,17 @@ typedef	struct	s_gradient
 	float			mix;
 }				t_gradient;
 
+typedef	struct	s_palette
+{
+	struct s_color	*c1;
+	struct s_color	*c2;
+	struct s_color	*c3;
+	struct s_color	*c4;
+	struct s_color	*c5;
+}				t_palette;
+
 /*
-** -------------------------------- Reader -------------------------------------
+** -------------------------------- Parser -------------------------------------
 */
 
 t_fdf			*check_valid_file(int fd);
@@ -108,6 +118,7 @@ t_line_values	*create_line_values(int height, int color);
 t_point			*create_point(int x, int y);
 void			set_point(t_point **point, int x, int y);
 void			set_points_setup(t_fdf *fdf);
+void			translate_points(t_fdf *fdf, int x_inc, int y_inc);
 
 /*
 ** -------------------------------- Segment ------------------------------------
@@ -124,7 +135,7 @@ void			create_window(t_fdf *fdf, char *file_name);
 ** --------------------------------- Event -------------------------------------
 */
 
-int				mlx_escape(int keycode, void *param);
+int				mlx_key(int keycode, void *param);
 int				mlx_zoom(int button, int x, int y, void *param);
 
 /*
@@ -160,4 +171,11 @@ t_gradient		*create_gradient(t_color *begin, t_color *end, int nb_pixel);
 
 t_color			*create_color(int decimal);
 int				rgb_to_decimal(t_color *color);
+
+/*
+** --------------------------------- Palette -----------------------------------
+*/
+
+t_palette		*create_palette(int ac, char **av);
+
 #endif
