@@ -6,28 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:17:49 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/05 16:06:56 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/06 19:08:14 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			get_number_of_line(t_fdf *fdf)
-{
-	int		i;
-	t_line	*line;
-
-	i = 0;
-	line = fdf->line;
-	while (line->next)
-	{
-		line = line->next;
-		i++;
-	}
-	return (i);
-}
-
-int			get_max_line_size(t_fdf *fdf)
+int				get_max_line_size(t_fdf *fdf)
 {
 	int		max_line_size;
 	t_line	*line;
@@ -43,7 +28,7 @@ int			get_max_line_size(t_fdf *fdf)
 	return (max_line_size);
 }
 
-t_point		*get_spaces(t_fdf *fdf)
+static t_point	*get_spaces(t_fdf *fdf)
 {
 	int		max_x;
 	int		max_y;
@@ -61,7 +46,7 @@ t_point		*get_spaces(t_fdf *fdf)
 	return (create_point(max_x, max_y));
 }
 
-t_fdf		*create_fdf(t_line *line)
+t_fdf			*create_fdf(t_line *line, int ac, char **av)
 {
 	t_fdf	*fdf;
 
@@ -71,6 +56,7 @@ t_fdf		*create_fdf(t_line *line)
 	fdf->img = NULL;
 	fdf->line = line;
 	fdf->spaces = get_spaces(fdf);
-	fdf->palette = NULL;
+	fdf->translation = create_point(0, get_max_line_size(fdf) * fdf->spaces->y);
+	fdf->palette = create_palette(ac, av);
 	return (fdf);
 }

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:07:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/05 16:58:45 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/06 19:03:30 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		main(int ac, char **av)
 		perror("Error ");
 		exit(EXIT_FAILURE);
 	}
-	fdf = check_valid_file(fd);
+	fdf = check_valid_file(fd, ac , av);
 	fdf->palette = create_palette(ac, av);
 	create_window(fdf, av[1]);
 	return (0);

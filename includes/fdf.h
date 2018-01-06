@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/05 17:43:14 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/06 19:05:44 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct	s_fdf
 	struct s_img			*img;
 	struct s_point			*spaces;
 	struct s_line			*line;
+	struct s_point			*translation;
 	struct s_palette		*palette;
 }				t_fdf;
 
@@ -103,7 +104,7 @@ typedef	struct	s_palette
 ** -------------------------------- Parser -------------------------------------
 */
 
-t_fdf			*check_valid_file(int fd);
+t_fdf			*check_valid_file(int fd, int ac, char **av);
 
 /*
 ** --------------------------------- Line --------------------------------------
@@ -118,7 +119,7 @@ t_line_values	*create_line_values(int height, int color);
 t_point			*create_point(int x, int y);
 void			set_point(t_point **point, int x, int y);
 void			set_points_setup(t_fdf *fdf);
-void			translate_points(t_fdf *fdf, int x_inc, int y_inc);
+void			translate_points(t_fdf *fdf);
 
 /*
 ** -------------------------------- Segment ------------------------------------
@@ -137,14 +138,13 @@ void			create_window(t_fdf *fdf, char *file_name);
 
 int				mlx_key(int keycode, void *param);
 int				mlx_zoom(int button, int x, int y, void *param);
+int				mlx_translate(int keycode, void *param);
 
 /*
 ** ---------------------------------- FDF --------------------------------------
 */
 
-t_point			*get_spaces(t_fdf *fdf);
-t_fdf			*create_fdf(t_line *line);
-int				get_number_of_line(t_fdf *fdf);
+t_fdf			*create_fdf(t_line *line, int ac, char **av);
 int				get_max_line_size(t_fdf *fdf);
 
 /*
@@ -177,5 +177,4 @@ int				rgb_to_decimal(t_color *color);
 */
 
 t_palette		*create_palette(int ac, char **av);
-
 #endif

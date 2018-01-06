@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 19:44:30 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/05 16:01:28 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/06 19:08:18 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static t_line	*line_to_struct(char *line)
 	return (create_line(values, num, size));
 }
 
-t_fdf			*check_valid_file(int fd)
+t_fdf			*check_valid_file(int fd, int ac, char **av)
 {
 	char	*line;
 	t_line	*line_struct_tmp;
@@ -124,5 +124,5 @@ t_fdf			*check_valid_file(int fd)
 		line_struct_tmp = line_struct_tmp->next;
 		free(line);
 	}
-	return (create_fdf(line_struct));
+	return (create_fdf(line_struct, ac, av));
 }

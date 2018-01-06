@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:26:08 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/05 17:43:16 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/06 18:00:04 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void	create_window(t_fdf *fdf, char *file_name)
 	if (NULL == (win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT,
 		*file_name_split)))
 		exit(EXIT_FAILURE);
+	(void)fdf;
 	fdf->mlx = mlx;
 	fdf->win = win;
 	fdf->img = create_img(mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT));
 	mlx_key_hook(win, mlx_key, fdf);
+	mlx_hook(win, 2, 0, mlx_translate, fdf);
 	mlx_mouse_hook(win, mlx_zoom, fdf);
 	set_points_setup(fdf);
 	draw_points(fdf);
