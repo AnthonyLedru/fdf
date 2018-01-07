@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 13:49:20 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/07 23:32:57 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/07 22:48:18 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/07 23:31:02 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_color	*create_color(int decimal)
+void	malloc_error()
 {
-	t_color	*color;
-
-	if(!(color = (t_color*)ft_memalloc(sizeof(t_color))))
-		malloc_error();
-	color->decimal = decimal;
-	color->r = (decimal >> 16) & 0xff;
-	color->g = (decimal >> 8) & 0xff;
-	color->b = decimal & 0xff;
-	return (color);
-}
-
-int		rgb_to_decimal(t_color *color)
-{
-	color->decimal = (color->r << 16) + (color->g << 8) + (color->b);
-	return (color->decimal);
+	ft_putstr_fd("Malloc error\n", 2);
+	exit(EXIT_FAILURE);
 }
