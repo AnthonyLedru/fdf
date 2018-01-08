@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:12:13 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 20:07:44 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/08 23:01:21 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int				get_nb_pixel(t_point *a, t_point *b)
 		}
 		nb_pixel++;
 	}
+	free(seg);
 	return (nb_pixel);
 }
 
@@ -86,11 +87,12 @@ static void		draw_segment(t_point *a, t_point *b, t_fdf *fdf,
 			a->y += seg->s->y;
 		}
 	}
+	free(seg);
 }
 
 static t_color	*get_color(t_fdf *fdf, int n)
 {
-	t_palette *palette;
+	t_palette	*palette;
 
 	palette = fdf->palette;
 	if (n <= 0)
@@ -115,6 +117,8 @@ void			draw_points(t_fdf *fdf, t_point *tmp)
 {
 	t_line		*l;
 	int			i;
+	t_color		*c1;
+	t_color		*c2;
 
 	l = fdf->line;
 	while (l)
@@ -122,18 +126,26 @@ void			draw_points(t_fdf *fdf, t_point *tmp)
 		i = -1;
 		while (++i < l->size)
 		{
-			tmp = create_point(l->points[i]->x, l->points[i]->y);
+			c1 = get_color(fdf, l->values[i]->height);
+			set_point(tmp, l->points[i]->x, l->points[i]->y);
 			if (i < l->size - 1)
+			{
+				c2 = get_color(fdf, l->values[i + 1]->height);
 				draw_segment(l->points[i], l->points[i + 1], fdf,
-					create_gradient(get_color(fdf, l->values[i]->height),
-						get_color(fdf, l->values[i + 1]->height),
+					create_gradient(c1, c2,
 						l->points[i], l->points[i + 1]));
+				free(c2);
+			}
 			set_point(l->points[i], tmp->x, tmp->y);
 			if (l->next)
+			{
+				c2 = get_color(fdf, l->next->values[i]->height);
 				draw_segment(l->points[i], l->next->points[i], fdf,
-					create_gradient(get_color(fdf, l->values[i]->height),
-						get_color(fdf, l->next->values[i]->height),
+					create_gradient(c1, c2,
 						l->points[i], l->next->points[i]));
+				free(c2);
+			}
+			free(c1);
 		}
 		l = l->next;
 	}
