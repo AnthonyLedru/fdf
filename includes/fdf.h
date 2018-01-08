@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/07 23:30:07 by                  ###   ########.fr       */
+/*   Updated: 2018/01/08 20:05:39 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,18 @@
 ** -------------------------------- Struct -------------------------------------
 */
 
+typedef struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	decimal;
+}				t_color;
+
 typedef	struct	s_line_values
 {
-	int	height;
-	int	color;
+	int				height;
+	struct s_color	*color;
 }				t_line_values;
 
 typedef struct	s_line
@@ -73,14 +81,6 @@ typedef	struct	s_segment
 	struct s_point	*s;
 }				t_segment;
 
-typedef struct	s_color
-{
-	int	r;
-	int	g;
-	int	b;
-	int	decimal;
-}				t_color;
-
 typedef	struct	s_gradient
 {
 	struct s_color	*begin;
@@ -111,15 +111,15 @@ t_fdf			*check_valid_file(int fd, int ac, char **av);
 */
 
 t_line			*create_line(t_line_values **values, int num, int size);
-t_line_values	*create_line_values(int height, int color);
+t_line_values	*create_line_values(int height, t_color *color);
 
 /*
 ** -------------------------------- Point --------------------------------------
 */
 t_point			*create_point(int x, int y);
-void			set_point(t_point **point, int x, int y);
+t_point			*copy_point(t_point *point);
+void			set_point(t_point *point, int x, int y);
 void			set_points_setup(t_fdf *fdf);
-void			translate_points(t_fdf *fdf);
 
 /*
 ** -------------------------------- Segment ------------------------------------
@@ -151,8 +151,8 @@ int				get_max_line_size(t_fdf *fdf);
 ** ---------------------------------- Draw -------------------------------------
 */
 
-void			draw_points(t_fdf *fdf);
-
+void			draw_points(t_fdf *fdf, t_point *tmp);
+int				get_nb_pixel(t_point *a, t_point *b);
 /*
 ** ----------------------------------- Img -------------------------------------
 */
@@ -163,7 +163,7 @@ t_img			*create_img(void *img);
 ** ------------------------------ Color Gradient -------------------------------
 */
 
-t_gradient		*create_gradient(t_color *begin, t_color *end, int nb_pixel);
+t_gradient		*create_gradient(t_color *beg, t_color *end, t_point *a, t_point *b);
 
 /*
 ** ---------------------------------- Color ------------------------------------
@@ -183,4 +183,8 @@ t_palette		*create_palette(int ac, char **av);
 */
 
 void			malloc_error();
+void			palette_error();
+void			arg_error();
+void			system_error();
+void			map_error();
 #endif

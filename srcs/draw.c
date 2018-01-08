@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:12:13 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/06 17:12:11 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/08 20:07:44 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		get_color_gradient(t_gradient *gradient)
 	return (gradient->color->decimal);
 }
 
-static int		get_nb_pixel(t_point *a, t_point *b)
+int				get_nb_pixel(t_point *a, t_point *b)
 {
 	int			nb_pixel;
 	int			err;
@@ -111,30 +111,29 @@ static t_color	*get_color(t_fdf *fdf, int n)
 	return (create_color(0xFFFFFF));
 }
 
-void			draw_points(t_fdf *fdf)
+void			draw_points(t_fdf *fdf, t_point *tmp)
 {
 	t_line		*l;
 	int			i;
 
 	l = fdf->line;
-	while (l->next)
+	while (l)
 	{
-		i = 0;
-		while (i < l->size - 1)
+		i = -1;
+		while (++i < l->size)
 		{
-			draw_segment(l->points[i], l->points[i + 1], fdf,
-				create_gradient(get_color(fdf, l->values[i]->height),
-				get_color(fdf, l->values[i + 1]->height),
-				get_nb_pixel(create_point(l->points[i]->x, l->points[i]->y),
-				create_point(l->points[i + 1]->x, l->points[i + 1]->y))));
+			tmp = create_point(l->points[i]->x, l->points[i]->y);
+			if (i < l->size - 1)
+				draw_segment(l->points[i], l->points[i + 1], fdf,
+					create_gradient(get_color(fdf, l->values[i]->height),
+						get_color(fdf, l->values[i + 1]->height),
+						l->points[i], l->points[i + 1]));
+			set_point(l->points[i], tmp->x, tmp->y);
 			if (l->next)
-				draw_segment(l->points[i], l->next->points[i + 1], fdf,
-					create_gradient(get_color(fdf, l->values[i + 1]->height),
-					get_color(fdf, l->next->values[i + 1]->height),
-					get_nb_pixel(create_point(l->points[i]->x, l->points[i]->y),
-					create_point(l->next->points[i + 1]->x,
-					l->next->points[i + 1]->y))));
-			i++;
+				draw_segment(l->points[i], l->next->points[i], fdf,
+					create_gradient(get_color(fdf, l->values[i]->height),
+						get_color(fdf, l->next->values[i]->height),
+						l->points[i], l->next->points[i]));
 		}
 		l = l->next;
 	}

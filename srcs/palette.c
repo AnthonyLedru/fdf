@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:52:39 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/05 15:48:46 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/08 19:50:51 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int		check_hexa(char *line)
 
 	i = 0;
 	if (*line && *line != '0')
-		return (0);
+		palette_error();
 	line++;
 	if (*line && *line != 'x')
-		return (0);
+		palette_error();
 	line++;
 	while (*line && *line != ' ')
 	{
@@ -31,8 +31,8 @@ static int		check_hexa(char *line)
 		line++;
 		i++;
 	}
-	if (i == 0 || i > 6)
-		return (0);
+	if (i != 6)
+		palette_error();
 	return (1);
 }
 
@@ -51,7 +51,8 @@ t_palette		*create_palette(int ac, char **av)
 	int			i;
 
 	i = 2;
-	palette = (t_palette*)ft_memalloc(sizeof(t_palette));
+	if (!(palette = (t_palette*)ft_memalloc(sizeof(t_palette))))
+		malloc_error();
 	init_palette(palette);
 	while (i < ac)
 	{

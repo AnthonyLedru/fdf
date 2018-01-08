@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:17:49 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/06 19:08:14 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/08 19:52:02 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,13 @@ static t_point	*get_spaces(t_fdf *fdf)
 {
 	int		max_x;
 	int		max_y;
-	t_line	*line;
+	int		max_line;
 
 	max_x = 0;
 	max_y = 0;
-	line = fdf->line;
-	max_y = get_max_line_size(fdf);
-	if (max_x > max_y)
-		max_x = (WIN_WIDTH / max_x) / 2;
-	else
-		max_x = (WIN_WIDTH / max_y) / 2;
-	max_y = max_x / 2;
+	max_line = get_max_line_size(fdf);
+	max_x = (WIN_WIDTH / max_line) / 2;
+	max_y = (WIN_WIDTH / max_line) / 4;
 	return (create_point(max_x, max_y));
 }
 
@@ -50,7 +46,8 @@ t_fdf			*create_fdf(t_line *line, int ac, char **av)
 {
 	t_fdf	*fdf;
 
-	fdf = (t_fdf*)ft_memalloc(sizeof(t_fdf));
+	if (!(fdf = (t_fdf*)ft_memalloc(sizeof(t_fdf))))
+		malloc_error();
 	fdf->mlx = NULL;
 	fdf->win = NULL;
 	fdf->img = NULL;
