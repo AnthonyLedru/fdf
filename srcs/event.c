@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 13:18:49 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 20:07:36 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/09 17:06:18 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		mlx_translate(int keycode, void *param)
 		fdf->translation->y -= 10;
 	if (keycode == 123 || keycode == 124 || keycode == 125 || keycode == 126)
 	{
+		free_all_points(fdf);
 		mlx_destroy_image(fdf->mlx, fdf->img->img_ptr);
 		free(fdf->img);
 		fdf->img = create_img(mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT));

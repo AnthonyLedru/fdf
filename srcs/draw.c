@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:12:13 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 23:01:21 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/09 16:46:50 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				get_nb_pixel(t_point *a, t_point *b)
 		}
 		nb_pixel++;
 	}
-	free(seg);
+	free_segment(seg);
 	return (nb_pixel);
 }
 
@@ -87,7 +87,8 @@ static void		draw_segment(t_point *a, t_point *b, t_fdf *fdf,
 			a->y += seg->s->y;
 		}
 	}
-	free(seg);
+	free_segment(seg);
+	free_gradient(gradient);
 }
 
 static t_color	*get_color(t_fdf *fdf, int n)
@@ -149,4 +150,5 @@ void			draw_points(t_fdf *fdf, t_point *tmp)
 		}
 		l = l->next;
 	}
+	free(tmp);
 }

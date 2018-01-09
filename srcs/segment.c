@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 18:20:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 12:39:12 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/09 16:56:18 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,11 @@ t_segment		*create_segment(int dx, int dy, int sx, int sy)
 	segment->d = create_point(dx, dy);
 	segment->s = create_point(sx, sy);
 	return (segment);
+}
+
+void		free_segment(t_segment *segment)
+{
+	free(segment->d);
+	free(segment->s);
+	free(segment);
 }

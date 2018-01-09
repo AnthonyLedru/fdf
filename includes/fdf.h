@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 20:05:39 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/09 17:05:35 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,18 @@ t_line_values	*create_line_values(int height, t_color *color);
 t_point			*create_point(int x, int y);
 t_point			*copy_point(t_point *point);
 void			set_point(t_point *point, int x, int y);
+
+/*
+** -------------------------------- Points -------------------------------------
+*/
 void			set_points_setup(t_fdf *fdf);
+void			free_all_points(t_fdf *fdf);
 
 /*
 ** -------------------------------- Segment ------------------------------------
 */
 t_segment		*create_segment(int dx, int dy, int sx, int sy);
+void			free_segment(t_segment *segment);
 
 /*
 ** --------------------------------- MLX ---------------------------------------
@@ -160,10 +166,11 @@ int				get_nb_pixel(t_point *a, t_point *b);
 t_img			*create_img(void *img);
 
 /*
-** ------------------------------ Color Gradient -------------------------------
+** --------------------------------- Gradient ----------------------------------
 */
 
 t_gradient		*create_gradient(t_color *beg, t_color *end, t_point *a, t_point *b);
+void			free_gradient(t_gradient *gradient);
 
 /*
 ** ---------------------------------- Color ------------------------------------

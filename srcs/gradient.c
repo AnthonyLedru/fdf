@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/03 15:48:57 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 22:34:21 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/09 16:44:35 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ t_gradient	*create_gradient(t_color *beg, t_color *end, t_point *a, t_point *b)
 	gradient->step = 1.0 / (float)gradient->nb_pixel;
 	gradient->mix = gradient->step;
 	return (gradient);
+}
+
+void	free_gradient(t_gradient *gradient)
+{
+	//free(gradient->begin);
+	//free(gradient->end);
+	free(gradient->color);
+	free(gradient);
 }

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:10 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 20:17:42 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/09 17:59:04 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void		set_points(t_fdf *fdf, t_point *pos, t_point *pos2)
 		}
 		set_point(pos2, pos2->x + fdf->spaces->x, pos2->y + fdf->spaces->y);
 		set_point(pos, pos2->x, pos2->y);
+		free(line->points);
 		line->points = points;
 		line = line->next;
 	}
@@ -49,4 +50,23 @@ void			set_points_setup(t_fdf *fdf)
 	pos = create_point(fdf->translation->x, fdf->translation->y);
 	pos2 = create_point(pos->x, pos->y);
 	set_points(fdf, pos, pos2);
+}
+
+void			free_all_points(t_fdf *fdf)
+{
+	t_line	*line;
+	int		i;
+
+	i = 0;
+	line = fdf->line;
+	while(line)
+	{
+		while (i < line->size)
+		{
+			free(line->points[i]);
+			i++;
+		}
+		i = 0;
+		line = line->next;
+	}
 }
