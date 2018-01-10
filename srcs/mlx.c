@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:26:08 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 19:57:41 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 20:02:09 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	display_menu(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0xFFFFFF,
 			"Zoom: MOUSE UP or MOUSE DOWN");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 120, 0xFFFFFF, "Exit: ESC");
+	ft_memdel((void*)&img);
 }
 
 void		create_window(t_fdf *fdf, char *file_name)
