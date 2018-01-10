@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:12:13 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 16:07:13 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 16:42:49 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,12 @@ static void		draw_segment(t_point *a, t_point *b, t_fdf *fdf,
 	{
 		if (a->y * WIN_WIDTH + a->x <= WIN_WIDTH * WIN_HEIGHT
 				&& a->y * WIN_WIDTH + a->x >= 0)
-			fdf->img->data[a->y * WIN_WIDTH + a->x] = gradient->color->decimal;
+		{
+			if (a->x > 2350 || a->x < 0)
+				fdf->img->data[a->y * WIN_WIDTH + a->x] = 0x000000;
+			else
+				fdf->img->data[a->y * WIN_WIDTH + a->x] = gradient->color->decimal;
+		}
 		gradient->color->decimal = get_color_gradient(gradient);
 		err_cpy = err;
 		get_err(err_cpy, &err, seg, a);
