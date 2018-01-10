@@ -6,20 +6,20 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#    Updated: 2018/01/08 18:42:16 by aledru           ###   ########.fr        #
+#    Updated: 2018/01/10 17:53:13 by aledru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := fdf
 
-INCLUDE_FOLDERS := -I includes/
+INCLUDE_FOLDERS := -I includes/ -I libft/includes/
 SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
 
 vpath %.c srcs
 
-FLAGS := -Wall -Wextra -Werror -g
-MLX	   := -lmlx -framework OpenGL -framework AppKit
+FLAGS := -Wall -Wextra -Werror
+MLX   := -lmlx -framework OpenGL -framework AppKit
 SOURCES := \
 		line.c \
 		segment.c \

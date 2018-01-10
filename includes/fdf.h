@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 15:51:50 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 16:50:05 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <string.h>
 # include <stdio.h>
 # include <mlx.h>
-# include "../libft/includes/libft.h"
+# include "libft.h"
 # define WIN_HEIGHT		1300
 # define WIN_WIDTH		2350
 
