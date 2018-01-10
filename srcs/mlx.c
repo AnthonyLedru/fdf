@@ -6,26 +6,31 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:26:08 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 20:02:09 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 20:10:42 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	display_menu(t_fdf *fdf)
+static void	display_menu(t_fdf *fdf, char *file_name_split)
 {
 	t_img	*img;
+	int width;
 
-	int width = 300;
+	width = 300;
 	img = create_img(mlx_new_image(fdf->mlx, width, WIN_HEIGHT),
 			0x262626, width, WIN_HEIGHT);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, img->img_ptr, 0, 0);
 	mlx_string_put(fdf->mlx, fdf->win, 80, 10, 0xFFFFFF, "FDF Controls");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0xFFFFFF,
-			"Translation: ^ v < >");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 60, 0xFFFFFF, "Map:");
+	mlx_string_put(fdf->mlx, fdf->win, 60, 60, 0xFFFFFF, file_name_split);
 	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0xFFFFFF,
+			"Translation: ^ v < >");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 120, 0xFFFFFF,
 			"Zoom: MOUSE UP or MOUSE DOWN");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 120, 0xFFFFFF, "Exit: ESC");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 150, 0xFFFFFF, "Exit: ESC");
+	mlx_string_put(fdf->mlx, fdf->win, 10, WIN_HEIGHT - 25, 0xFFFFFF,
+			"Author: LEDRU Anthony");
 	ft_memdel((void*)&img);
 }
 
@@ -53,7 +58,7 @@ void		create_window(t_fdf *fdf, char *file_name)
 	mlx_mouse_hook(win, mlx_zoom, fdf);
 	set_points(fdf);
 	draw_points(fdf, create_point(0, 0));
-	display_menu(fdf);
+	display_menu(fdf, *file_name_split);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img_ptr, 300, 0);
 	mlx_loop(mlx);
 }
