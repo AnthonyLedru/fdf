@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/09 17:05:35 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 15:51:50 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,7 @@ void			set_point(t_point *point, int x, int y);
 /*
 ** -------------------------------- Points -------------------------------------
 */
-void			set_points_setup(t_fdf *fdf);
-void			free_all_points(t_fdf *fdf);
+void			set_points(t_fdf *fdf);
 
 /*
 ** -------------------------------- Segment ------------------------------------
@@ -169,15 +168,16 @@ t_img			*create_img(void *img);
 ** --------------------------------- Gradient ----------------------------------
 */
 
-t_gradient		*create_gradient(t_color *beg, t_color *end, t_point *a, t_point *b);
+t_gradient		*create_gradient(t_color *beg, t_color *end, t_point *a,
+									t_point *b);
 void			free_gradient(t_gradient *gradient);
 
 /*
 ** ---------------------------------- Color ------------------------------------
 */
 
+t_color			*get_color(t_fdf *fdf, int n);
 t_color			*create_color(int decimal);
-int				rgb_to_decimal(t_color *color);
 
 /*
 ** --------------------------------- Palette -----------------------------------

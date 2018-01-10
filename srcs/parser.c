@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 19:44:30 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 19:40:22 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 15:08:47 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,25 @@ static t_line	*line_to_struct(char *line)
 	char			**all_values;
 	t_line_values	**values;
 	int				size;
+	int				size_cpy;
 
 	all_values = ft_strsplit(line, ' ');
 	size = 0;
 	while (all_values[size])
 		size++;
+	size_cpy = size;
 	if (!(values = (t_line_values**)ft_memalloc(sizeof(t_line_values*) * size)))
 		malloc_error();
 	while (size - 1 >= 0)
 	{
 		values[size - 1] = create_line_values(ft_atoi(all_values[size - 1]),
 		get_point_color(all_values[size - 1]));
-		free(all_values[size - 1]);
+		ft_memdel((void**)&all_values[size - 1]);
 		size--;
 	}
-	while (all_values[size])
-		size++;
 	num++;
-	free(all_values);
-	return (create_line(values, num, size));
+	ft_memdel((void**)&all_values);
+	return (create_line(values, num, size_cpy));
 }
 
 t_fdf			*check_valid_file(int fd, int ac, char **av)
@@ -117,7 +117,7 @@ t_fdf			*check_valid_file(int fd, int ac, char **av)
 	line_struct_tmp = line_to_struct(line);
 	line_struct = line_struct_tmp;
 	size = line_struct_tmp->size;
-	free(line);
+	ft_memdel((void**)&line);
 	while (get_next_line(fd, &line) == 1)
 	{
 		check_line_valid(line);
@@ -125,7 +125,7 @@ t_fdf			*check_valid_file(int fd, int ac, char **av)
 		if (size != line_struct_tmp->next->size)
 			map_error();
 		line_struct_tmp = line_struct_tmp->next;
-		free(line);
+		ft_memdel((void**)&line);
 	}
 	return (create_fdf(line_struct, ac, av));
 }

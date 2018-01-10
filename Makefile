@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#*   Updated: 2018/01/08 21:34:47 by aledru           ###   ########.fr       *#
+#    Updated: 2018/01/08 18:42:16 by aledru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJECTS_FOLDER  := objs/
 
 vpath %.c srcs
 
-FLAGS := -Wall -Wextra -Werror
+FLAGS := -Wall -Wextra -Werror -g
 MLX	   := -lmlx -framework OpenGL -framework AppKit
 SOURCES := \
 		line.c \
@@ -32,9 +32,9 @@ SOURCES := \
 		mlx.c \
 		event.c \
 		draw.c \
+		gradient.c \
 		color.c \
 		palette.c \
-		gradient.c \
 		error.c \
 
 OBJECTS := $(SOURCES:.c=.o)
@@ -57,13 +57,12 @@ header:
 $(NAME): $(OBJECTS)
 	@make -C libft/
 	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
-	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) \
-	-Lminilibx_macos/ minilibx_macos/libmlx.a
+	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
 
 objs/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) $(INCLUDE_FOLDERS) -Iminilibx_macos/ -c $< -o $@
+	@$(CC) $(FLAGS) $(INCLUDE_FOLDERS) -c $< -o $@
 	@printf "$(notdir $<) "
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
 

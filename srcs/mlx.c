@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:26:08 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/09 16:30:53 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 15:52:06 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	create_window(t_fdf *fdf, char *file_name)
 	mlx_key_hook(win, mlx_key, fdf);
 	mlx_hook(win, 2, 0, mlx_translate, fdf);
 	mlx_mouse_hook(win, mlx_zoom, fdf);
-	set_points_setup(fdf);
+	set_points(fdf);
 	draw_points(fdf, create_point(0, 0));
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img_ptr, 0, 0);
 	mlx_loop(mlx);

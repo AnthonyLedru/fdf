@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 18:20:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/09 16:56:18 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 14:30:39 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_segment		*create_segment(int dx, int dy, int sx, int sy)
+t_segment	*create_segment(int dx, int dy, int sx, int sy)
 {
 	t_segment	*segment;
 
@@ -25,7 +25,8 @@ t_segment		*create_segment(int dx, int dy, int sx, int sy)
 
 void		free_segment(t_segment *segment)
 {
-	free(segment->d);
-	free(segment->s);
-	free(segment);
+	(void)segment;
+	ft_memdel((void**)&segment->d);
+	ft_memdel((void**)&segment->s);
+	ft_memdel((void**)&segment);
 }

@@ -6,20 +6,28 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 14:46:57 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/08 17:21:20 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/10 13:05:08 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_line			*create_line(t_line_values **points, int num, int size)
+t_line			*create_line(t_line_values **values, int num, int size)
 {
-	t_line *line;
+	t_line	*line;
+	int		i;
 
+	i = 0;
 	if (!(line = (t_line*)ft_memalloc(sizeof(t_line))))
 		malloc_error();
-	line->values = points;
-	line->points = NULL;
+	line->values = values;
+	if (!(line->points = (t_point**)ft_memalloc(sizeof(t_point*) * size)))
+		malloc_error();
+	while (i < size)
+	{
+		line->points[i] = create_point(0, 0);
+		i++;
+	}
 	line->num = num;
 	line->size = size;
 	line->next = NULL;
