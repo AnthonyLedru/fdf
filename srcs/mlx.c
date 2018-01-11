@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:26:08 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/11 14:04:42 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:13:48 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	display_menu(t_fdf *fdf, char *file_name_split)
 {
 	t_img	*img;
-	int width;
+	int		width;
 
 	width = 300;
 	img = create_img(mlx_new_image(fdf->mlx, width, WIN_HEIGHT),
@@ -28,7 +28,9 @@ static void	display_menu(t_fdf *fdf, char *file_name_split)
 			"Translation: ^ v < >");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 120, 0xFFFFFF,
 			"Zoom: MOUSE UP or MOUSE DOWN");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 150, 0xFFFFFF, "Exit: ESC");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 150, 0xFFFFFF,
+			"Zoom height: + or -");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 180, 0xFFFFFF, "Exit: ESC");
 	mlx_string_put(fdf->mlx, fdf->win, 10, WIN_HEIGHT - 25, 0xFFFFFF,
 			"Author: LEDRU Anthony");
 	ft_memdel((void*)&img);
