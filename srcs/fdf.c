@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:17:49 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/11 13:57:34 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/11 19:33:58 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ static t_point	*get_spaces(t_fdf *fdf)
 t_fdf			*create_fdf(t_line *line, int ac, char **av)
 {
 	t_fdf	*fdf;
+	int		y;
 
+	y = WIN_HEIGHT / 2;
 	if (!(fdf = (t_fdf*)ft_memalloc(sizeof(t_fdf))))
 		malloc_error();
 	fdf->mlx = NULL;
@@ -53,8 +55,8 @@ t_fdf			*create_fdf(t_line *line, int ac, char **av)
 	fdf->img = NULL;
 	fdf->line = line;
 	fdf->spaces = get_spaces(fdf);
-	fdf->translation = create_point(0, get_max_line_size(fdf) * fdf->spaces->y);
+	fdf->translation = create_point(0, y);
 	fdf->palette = create_palette(ac, av);
-	fdf->coef_z = 5;
+	fdf->coef_z = 3;
 	return (fdf);
 }

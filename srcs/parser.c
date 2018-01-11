@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 19:44:30 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 15:08:47 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/11 19:22:09 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		check_hexa(char *line)
 	if (*line && *line != 'x')
 		map_error();
 	line++;
-	while (*line != ' ')
+	while (*line && *line != ' ')
 	{
 		if ((*line < 'A' || *line > 'F') && (*line < 'a' || *line > 'f') &&
 				(*line < '0' || *line > '9'))
