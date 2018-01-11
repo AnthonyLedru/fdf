@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:10 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 14:42:47 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/11 13:58:14 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_points(t_fdf *fdf)
 		while (i < line->size)
 		{
 			set_point(line->points[i], pos->x,
-					pos->y - line->values[i]->height * 10);
+					pos->y - line->values[i]->height * fdf->coef_z);
 			set_point(pos, pos->x + fdf->spaces->x, pos->y - fdf->spaces->y);
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 13:49:20 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 17:52:14 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/11 13:06:40 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ t_color	*get_color(t_fdf *fdf, int n)
 	t_palette	*palette;
 
 	palette = fdf->palette;
-	if (n <= 0)
+	if (n < 0)
 		if (palette->c1)
 			return (create_color(palette->c1->decimal));
-	if (n >= 10 && n < 100)
+	if (n == 0)
 		if (palette->c2)
 			return (create_color(palette->c2->decimal));
-	if (n >= 100 && n < 200)
+	if (n >= 1 && n <= 10)
 		if (palette->c3)
 			return (create_color(palette->c3->decimal));
-	if (n >= 200 && n < 300)
+	if (n >= 11 && n <= 30)
 		if (palette->c4)
 			return (create_color(palette->c4->decimal));
-	if (n >= 300)
+	if (n > 30)
 		if (palette->c5)
 			return (create_color(palette->c5->decimal));
 	return (create_color(0xFFFFFF));

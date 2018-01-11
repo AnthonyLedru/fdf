@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:08:22 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 19:26:27 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:04:14 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct	s_fdf
 	struct s_line			*line;
 	struct s_point			*translation;
 	struct s_palette		*palette;
+	int						coef_z;
 }				t_fdf;
 
 typedef struct	s_point
@@ -143,7 +144,7 @@ void			create_window(t_fdf *fdf, char *file_name);
 
 int				mlx_key(int keycode, void *param);
 int				mlx_zoom(int button, int x, int y, void *param);
-int				mlx_translate(int keycode, void *param);
+int				mlx_key_pressed(int keycode, void *param);
 
 /*
 ** ---------------------------------- FDF --------------------------------------

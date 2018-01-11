@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:17:49 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 15:03:00 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/11 13:57:34 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ t_fdf			*create_fdf(t_line *line, int ac, char **av)
 	fdf->spaces = get_spaces(fdf);
 	fdf->translation = create_point(0, get_max_line_size(fdf) * fdf->spaces->y);
 	fdf->palette = create_palette(ac, av);
+	fdf->coef_z = 5;
 	return (fdf);
 }
