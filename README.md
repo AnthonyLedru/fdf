@@ -5,7 +5,7 @@ relief landscape
  
 ## Compilation
 
-Run `make` command to compile the library
+Run `make` command to compile the project
 
 ## Usage
 
