@@ -5,10 +5,8 @@ relief landscape
  
 ## Compilation
 
-```
-make
-```
- 
+Run `make` command to compile the library
+
 ## Usage
 
 ```
