@@ -5,15 +5,15 @@ relief landscape
  
 ## Compilation
 
-`
+```
 make
-`
+```
  
 ## Usage
 
-` 
+```
 ./fdf [map] [c1] [c2] [c3] [c4] [c5]
-`
+```
 
 ## Subject 
  
