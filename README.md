@@ -11,7 +11,7 @@ This project has been made with the minilibx
 - Translation (X, Y)
 - Change the height
 - Color palette in argument
-- Color gradient between 2 points
+- Color gradient between 2 points of different height
 
 Controles are show in the side menu
 
