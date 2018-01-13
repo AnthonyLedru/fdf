@@ -2,7 +2,17 @@
 
 This project is about creating a simplified 3D graphic representation of a
 relief landscape
- 
+
+## Features
+
+- Zoom (X, Y)
+- Translation (X, Y)
+- Change the height
+- Color palette in argument
+- Color gradient between 2 points
+
+Controles are show in the side menu
+
 ## Compilation
 
 Run `make` command to compile the project
