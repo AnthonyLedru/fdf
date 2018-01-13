@@ -12,6 +12,8 @@ Run `make` command to compile the project
 ```
 ./fdf [map] [c1] [c2] [c3] [c4] [c5]
 ```
+Some example of map are given in the repository
+The 5 colors are optional
 
 ## Subject 
  
