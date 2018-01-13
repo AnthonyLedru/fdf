@@ -3,7 +3,7 @@
 This project is about creating a simplified 3D graphic representation of a
 relief landscape
 
-This project is done with the minilibx
+This project has been made with the minilibx
 
 ## Features
 
@@ -30,5 +30,5 @@ The 5 colors are optional
 
 ## Subject 
  
-https://github.com/AnthonyLedru/get_next_line/blob/master/fdf.pdf
+https://github.com/AnthonyLedru/fdf/blob/master/fdf.pdf
 
