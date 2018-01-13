@@ -5,11 +5,15 @@ relief landscape
  
 ## Compilation
 
-``` make ```
+`
+make
+`
  
 ## Usage
 
-``` ./fdf [map] [c1] [c2] [c3] [c4] [c5] ```
+` 
+./fdf [map] [c1] [c2] [c3] [c4] [c5]
+`
 
 ## Subject 
  
