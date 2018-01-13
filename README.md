@@ -3,6 +3,8 @@
 This project is about creating a simplified 3D graphic representation of a
 relief landscape
 
+This project is done with the minilibx
+
 ## Features
 
 - Zoom (X, Y)
