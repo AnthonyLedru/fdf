@@ -11,11 +11,11 @@ This project has been made with the minilibx
 
 - Zoom (X, Y)
 - Translation (X, Y)
-- Change the height
+- Change the height (Z)
 - Color palette in argument
 - Color gradient between 2 points of different height
 
-Controles are show in the side menu
+Controls are show in the side menu
 
 ## Compilation
 
