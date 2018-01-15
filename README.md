@@ -5,7 +5,7 @@ Fdf from the french "Fil de fer" and wireframe in english
 This project is about creating a simplified 3D graphic representation of a
 relief landscape
 
-This project has been made with the minilibx
+Made with the minilibx
 
 ## Features
 
