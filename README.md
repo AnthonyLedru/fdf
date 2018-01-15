@@ -7,6 +7,10 @@ relief landscape
 
 Made with the minilibx
 
+## Screenshots
+
+![alt text](https://github.com/AnthonyLedru/fdf/blob/master/screenshots/42_fdf.png)
+
 ## Features
 
 - Zoom (X, Y)
