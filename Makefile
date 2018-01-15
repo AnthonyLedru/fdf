@@ -12,7 +12,7 @@
 
 NAME := fdf
 
-INCLUDE_FOLDERS := -I includes/ -I libft/includes/
+INCLUDE_FOLDERS := -I includes/ -I libft/includes/ -Iminilibx_macos/
 SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
 
@@ -58,12 +58,12 @@ $(NAME): $(OBJECTS)
 	@make -C libft/
 	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
 	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) \
-	-Lminilibx_macos/ minilibx_macos/libmlx.a
+	minilibx_macos/libmlx.a
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
 
 objs/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) $(INCLUDE_FOLDERS) -Iminilibx_macos/ -c $< -o $@
+	@$(CC) $(FLAGS) $(INCLUDE_FOLDERS) -c $< -o $@
 	@printf "$(notdir $<) "
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
 
