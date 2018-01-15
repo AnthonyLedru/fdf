@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 19:56:52 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/12 17:37:00 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_img(t_img *img, int color, int width, int height)
+static void	fill_img(t_img *img, int color, int width, int height)
 {
 	int i;
 
@@ -24,7 +24,7 @@ void	fill_img(t_img *img, int color, int width, int height)
 	}
 }
 
-t_img	*create_img(void *img, int color, int width, int height)
+t_img		*create_img(void *img, int color, int width, int height)
 {
 	t_img *s_img;
 

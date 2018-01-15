@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:17:49 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/11 19:33:58 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/12 18:28:06 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static t_point	*get_spaces(t_fdf *fdf)
 	max_x = 0;
 	max_y = 0;
 	max_line = get_max_line_size(fdf);
-	max_x = (WIN_WIDTH / max_line) / 2;
-	max_y = (WIN_WIDTH / max_line) / 4;
+	max_x = (WIN_WIDTH / max_line) / 4;
+	max_y = max_x;
 	return (create_point(max_x, max_y));
 }
 

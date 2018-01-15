@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 14:26:59 by aledru            #+#    #+#              #
-#    Updated: 2018/01/10 17:56:41 by aledru           ###   ########.fr        #
+#    Updated: 2018/01/15 12:29:20 by aledru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,7 @@ header:
 	@printf "$(HEAD_COLOR)--------------------------------$(NO_COLOR)\n\n"
 
 $(NAME): $(OBJECTS)
-	@printf "\n$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
+	@printf "\n$(SILENT_COLOR)Compiling libft...$(NO_COLOR)"
 	@ar rcs $(NAME) $(OBJECTS)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n"
 

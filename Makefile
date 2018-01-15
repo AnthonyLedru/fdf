@@ -12,7 +12,7 @@
 
 NAME := fdf
 
-INCLUDE_FOLDERS := -I includes/
+INCLUDE_FOLDERS := -I includes/ -I libft/includes/
 SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
 
