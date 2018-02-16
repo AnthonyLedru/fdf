@@ -52,9 +52,9 @@ HEADER_PRINTED := NO
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@make -C libft/
-	@make -C minilibx_macos/
-	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
+	@make -C libft/ -s
+	@make -C minilibx_macos/ -s
+	@printf "\n$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
 	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) \
 	minilibx_macos/libmlx.a
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
