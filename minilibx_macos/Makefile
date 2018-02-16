@@ -1,6 +1,3 @@
-#
-#
-
 NOM=libmlx.a
 SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c
 OBJ1=$(SRC:.c=.o)
@@ -20,7 +17,7 @@ $(NOM):	$(OBJ)
 	@printf "\n$(SILENT_COLOR)Compiling Mlx...$(NO_COLOR)"
 	@ar rcs $(NOM) $(OBJ)
 	@ranlib $(NOM)
-	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n\n\n"
+	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n"
 
 %.o: %.c
 	@if [ "$(HEADER_PRINTED)" = "NO" ]; then \
