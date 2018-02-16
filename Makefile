@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#*   Updated: 2018/02/16 18:01:22 by aledru           ###   ########.fr       *#
+#*   Updated: 2018/02/16 18:23:15 by aledru           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ clean:
 
 fclean:
 	@make -C libft/ fclean
-	@make -C minilibx_macos/ clean
+	@make -C minilibx_macos/ fclean
 	@rm -rf $(OBJECTS_FOLDER)
 	@printf "$(SILENT_COLOR)$(NAME) : Objects removed$(NO_COLOR)\n"
 	@rm -f $(NAME)

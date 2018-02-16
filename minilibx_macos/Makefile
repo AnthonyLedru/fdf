@@ -39,9 +39,12 @@ $(NOM):	$(OBJ)
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
 
 clean:
-	@rm -f $(NOM) $(OBJ) *~
+	@rm -f $(OBJ) *~
 	@rm -f mlx_app
-	@printf "$(SILENT_COLOR)Mlx : Objects removed$(NO_COLOR)\n"
-	@printf "$(SILENT_COLOR)Mlx : Library removed$(NO_COLOR)\n"
+	@printf "$(SILENT_COLOR)mlx : Objects removed$(NO_COLOR)\n"
 
-re: clean all
+fclean: clean
+	@rm -f $(NOM)
+	@printf "$(SILENT_COLOR)mlx : Library removed$(NO_COLOR)\n"
+
+re: fclean all
