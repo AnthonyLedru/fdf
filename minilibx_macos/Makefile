@@ -12,12 +12,9 @@ OK_COLOR     := \x1b[32;01m
 HEAD_COLOR   := \x1b[32;01m
 SILENT_COLOR := \x1b[30;01m
 
-all: header $(NOM)
+HEADER_PRINTED := NO
 
-header:
-	@printf "\n$(HEAD_COLOR)--------------------------------\n"
-	@printf "$(HEAD_COLOR)------------- MLX --------------\n"
-	@printf "$(HEAD_COLOR)--------------------------------$(NO_COLOR)\n\n"
+all: $(NOM)
 
 $(NOM):	$(OBJ)
 	@printf "\n$(SILENT_COLOR)Compiling Mlx...$(NO_COLOR)"
@@ -26,6 +23,12 @@ $(NOM):	$(OBJ)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n\n\n"
 
 %.o: %.c
+	@if [ "$(HEADER_PRINTED)" = "NO" ]; then \
+		printf "\n$(HEAD_COLOR)--------------------------------\n"; \
+		printf "$(HEAD_COLOR)------------- MLX --------------\n"; \
+		printf "$(HEAD_COLOR)--------------------------------$(NO_COLOR)\n\n"; \
+		$(eval HEADER_PRINTED := YES) \
+	fi
 	@gcc $(CFLAGS) -c $< -o $@
 	@printf "$(notdir $<) "
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
