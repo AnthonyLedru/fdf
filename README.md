@@ -7,6 +7,8 @@ relief landscape
 
 Made with the minilibx
 
+This code complies with the 42 school norm: https://github.com/AnthonyLedru/norm/blob/master/norme.pdf
+
 ## Screenshots
 
 ![alt text](https://github.com/AnthonyLedru/fdf/blob/master/screenshots/42_fdf.png)
